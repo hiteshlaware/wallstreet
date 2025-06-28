@@ -1,13 +1,13 @@
-package com.walstreet.controller;
+package com.wallstreet.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.walstreet.dto.SigninDto;
-import com.walstreet.dto.SignupDto;
-import com.walstreet.model.Account;
-import com.walstreet.service.SigninService;
+import com.wallstreet.dto.SigninDto;
+import com.wallstreet.dto.SignupDto;
+import com.wallstreet.model.Account;
+import com.wallstreet.service.SigninService;
 
 @RestController
 @RequestMapping("/api/auth")

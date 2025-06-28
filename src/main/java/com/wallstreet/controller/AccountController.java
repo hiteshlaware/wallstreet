@@ -1,10 +1,10 @@
-package com.walstreet.controller;
+package com.wallstreet.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.walstreet.model.Account;
-import com.walstreet.service.AccountService;
+import com.wallstreet.model.Account;
+import com.wallstreet.service.AccountService;
 
 import java.util.List;
 

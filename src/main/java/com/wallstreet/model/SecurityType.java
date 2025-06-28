@@ -1,4 +1,4 @@
-package com.walstreet.model;
+package com.wallstreet.model;
 
 public enum SecurityType {
     COM, // Common Stock

@@ -1,9 +1,9 @@
-package com.walstreet.repository;
+package com.wallstreet.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.walstreet.model.Security;
+import com.wallstreet.model.Security;
 
 import java.util.Optional;
 

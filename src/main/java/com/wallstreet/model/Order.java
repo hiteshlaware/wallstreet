@@ -1,4 +1,4 @@
-package com.walstreet.model;
+package com.wallstreet.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

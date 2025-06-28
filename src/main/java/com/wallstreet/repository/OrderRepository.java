@@ -1,9 +1,9 @@
-package com.walstreet.repository;
+package com.wallstreet.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.walstreet.model.Order;
+import com.wallstreet.model.Order;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {

@@ -1,6 +1,6 @@
-package com.walstreet.dto;
+package com.wallstreet.dto;
 
-import com.walstreet.model.OrderType;
+import com.wallstreet.model.OrderType;
 
 public class OrderCreateDto {
     private Long accountId;

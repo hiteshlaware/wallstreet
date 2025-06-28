@@ -1,4 +1,4 @@
-package com.walstreet.dto;
+package com.wallstreet.dto;
 
 public class SignupDto {
     private String name;

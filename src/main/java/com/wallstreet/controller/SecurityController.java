@@ -1,11 +1,11 @@
-package com.walstreet.controller;
+package com.wallstreet.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.walstreet.model.Security;
-import com.walstreet.service.SecurityService;
+import com.wallstreet.model.Security;
+import com.wallstreet.service.SecurityService;
 
 import java.util.List;
 

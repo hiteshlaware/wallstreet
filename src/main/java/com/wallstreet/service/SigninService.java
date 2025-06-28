@@ -1,11 +1,11 @@
-package com.walstreet.service;
+package com.wallstreet.service;
 
 import org.springframework.stereotype.Service;
 
-import com.walstreet.dto.SigninDto;
-import com.walstreet.dto.SignupDto;
-import com.walstreet.model.Account;
-import com.walstreet.repository.AccountRepository;
+import com.wallstreet.dto.SigninDto;
+import com.wallstreet.dto.SignupDto;
+import com.wallstreet.model.Account;
+import com.wallstreet.repository.AccountRepository;
 
 import java.util.Optional;
 

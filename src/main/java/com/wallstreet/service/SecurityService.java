@@ -1,10 +1,10 @@
-package com.walstreet.service;
+package com.wallstreet.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.walstreet.model.Security;
-import com.walstreet.repository.SecurityRepository;
+import com.wallstreet.model.Security;
+import com.wallstreet.repository.SecurityRepository;
 
 import java.util.List;
 import java.util.Optional;

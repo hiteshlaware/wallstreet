@@ -1,13 +1,13 @@
-package com.walstreet.service;
+package com.wallstreet.service;
 
 import org.springframework.stereotype.Service;
 
-import com.walstreet.dto.OrderCreateDto;
-import com.walstreet.dto.TargetType;
-import com.walstreet.model.Account;
-import com.walstreet.model.Order;
-import com.walstreet.model.Security;
-import com.walstreet.repository.OrderRepository;
+import com.wallstreet.dto.OrderCreateDto;
+import com.wallstreet.dto.TargetType;
+import com.wallstreet.model.Account;
+import com.wallstreet.model.Order;
+import com.wallstreet.model.Security;
+import com.wallstreet.repository.OrderRepository;
 
 import java.math.BigDecimal;
 import java.util.List;

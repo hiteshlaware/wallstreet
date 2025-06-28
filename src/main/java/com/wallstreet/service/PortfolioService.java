@@ -1,9 +1,9 @@
-package com.walstreet.service;
+package com.wallstreet.service;
 
 import org.springframework.stereotype.Service;
 
-import com.walstreet.model.Portfolio;
-import com.walstreet.repository.PortfolioRepository;
+import com.wallstreet.model.Portfolio;
+import com.wallstreet.repository.PortfolioRepository;
 
 import java.util.List;
 import java.util.Optional;
