@@ -1,0 +1,30 @@
+# Spring Boot
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDE files
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+
+# React
+ui/node_modules/
+ui/build/
+ui/.env
+ui/.env.local
+ui/.env.development.local
+ui/.env.test.local
+ui/.env.production.local
+ui/npm-debug.log*
+ui/yarn-debug.log*
+ui/yarn-error.log*
+
+# Misc
+.DS_Store
+*.log
+*.swp
+*.swo
