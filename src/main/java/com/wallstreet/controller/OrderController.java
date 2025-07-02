@@ -10,7 +10,7 @@ import com.wallstreet.service.OrderService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api")
 public class OrderController {
     
     private final OrderService orderService;
@@ -19,35 +19,44 @@ public class OrderController {
         this.orderService = orderService;
     }
     
-    @GetMapping
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    @GetMapping("/orders")
+    public ResponseEntity<List<Order>> getAllOrders() {
+        List<Order> orders = orderService.getAllOrders();
+        if (orders.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(orders);
     }
     
-    @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrderById(@PathVariable Long id) {
-        return orderService.getOrderById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping("/accounts/{accountId}/orders")
+    public ResponseEntity<List<Order>> getAccountOrders(@PathVariable Long accountId) {
+        List<Order> orders = orderService.getAccountOrders(accountId);
+        if (orders.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(orders);
     }
     
-    @PostMapping
-    public Order createOrder(@RequestBody OrderCreateDto orderCreateDto) {
-        return orderService.createOrder(orderCreateDto);
+    @PostMapping("/accounts/{accountId}/orders")
+    public ResponseEntity<Order> createOrder(@PathVariable Long accountId,
+        @RequestBody OrderCreateDto orderCreateDto) {
+        return ResponseEntity.ok(orderService.createOrder(accountId, orderCreateDto));
     }
     
-    @PutMapping("/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order order) {
-        Order updatedOrder = orderService.updateOrder(id, order);
+    @PutMapping("/accounts/{accountId}/orders/{id}")
+    public ResponseEntity<Order> updateOrder(@PathVariable Long accountId,
+        @PathVariable Long id,
+        @RequestBody Order order) {
+        Order updatedOrder = orderService.updateOrder(accountId, id, order);
         if (updatedOrder != null) {
             return ResponseEntity.ok(updatedOrder);
         }
         return ResponseEntity.notFound().build();
     }
     
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        if (orderService.deleteOrder(id)) {
+    @DeleteMapping("/accounts/{accountId}/orders/{id}")  
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long accountId, @PathVariable Long id) {
+        if (orderService.deleteOrder(accountId, id)) {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
