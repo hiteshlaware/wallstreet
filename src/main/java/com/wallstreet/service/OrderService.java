@@ -31,13 +31,20 @@ public class OrderService {
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
-    
-    public Optional<Order> getOrderById(Long id) {
-        return orderRepository.findById(id);
+
+    public List<Order> getAccountOrders(Long accountId) {
+        Optional<Account> account = accountService.getAccountById(accountId);
+        if (account.isEmpty()) {
+            throw new IllegalArgumentException("Account not found for id: " + accountId);
+        }
+        return orderRepository.findByAccountId(accountId);
     }
-    
-    public Order createOrder(OrderCreateDto orderCreateDto) {
+
+    public Order createOrder(Long accountId, OrderCreateDto orderCreateDto) {
         System.out.println("OrderCreateDto: " + orderCreateDto.toString());
+        if (accountId != orderCreateDto.getAccountId()) {
+            throw new IllegalArgumentException("Account id does not match");
+        }
 
         Security security = securityService.findBySymbol(orderCreateDto.getSymbol())
             .orElseThrow(() -> new IllegalArgumentException("Security not found for symbol: " + orderCreateDto.getSymbol()));
@@ -63,8 +70,12 @@ public class OrderService {
 
         return orderRepository.save(order);
     }
-    
-    public Order updateOrder(Long id, Order order) {
+
+    public Order updateOrder(Long accountId, Long id, Order order) {
+        Optional<Account> account = accountService.getAccountById(accountId);
+        if (account.isEmpty()) {
+            throw new IllegalArgumentException("Account not found for id: " + accountId);
+        }
         if (orderRepository.existsById(id)) {
             order.setId(id);
             return orderRepository.save(order);
@@ -72,7 +83,11 @@ public class OrderService {
         return null;
     }
     
-    public boolean deleteOrder(Long id) {
+    public boolean deleteOrder(Long accountId, Long id) {
+        Optional<Account> account = accountService.getAccountById(accountId);
+        if (account.isEmpty()) {
+            throw new IllegalArgumentException("Account not found for id: " + accountId);
+        }
         if (orderRepository.existsById(id)) {
             orderRepository.deleteById(id);
             return true;

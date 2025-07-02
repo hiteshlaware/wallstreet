@@ -14,8 +14,8 @@ INSERT INTO account (id, name, username, password, email, phone) VALUES
 (5, 'David Wilson', 'dwilson', 'pass654', 'david.w@email.com', '555-0105');
 
 INSERT INTO orders (id, account_id, security_id, order_type, price, quantity, amount) VALUES 
-(1, 1, 1, 'BUY', 2800.00, 1.0, 2800.00),
-(2, 2, 2, 'SELL', 3500.00, 1.0, 3500.00),
-(3, 3, 3, 'BUY', 330.00, 1.0, 330.00),
-(4, 4, 4, 'SELL', 380.00, 1.0, 380.00),
-(5, 5, 5, 'BUY', 190.00, 1.0, 190.00);
+(1001, 1, 1, 'BUY', 2800.00, 1.0, 2800.00),
+(1002, 2, 2, 'SELL', 3500.00, 1.0, 3500.00),
+(1003, 3, 3, 'BUY', 330.00, 1.0, 330.00),
+(1004, 4, 4, 'SELL', 380.00, 1.0, 380.00),
+(1005, 5, 5, 'BUY', 190.00, 1.0, 190.00);
