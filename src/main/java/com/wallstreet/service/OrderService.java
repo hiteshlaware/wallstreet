@@ -52,7 +52,7 @@ public class OrderService {
         order.setPrice(security.getPrice());
 
         // Calculate quantity and amount based on TargetType
-        if (orderCreateDto.getTargetType() == TargetType.Shares) {
+        if (orderCreateDto.getTargetType() == TargetType.SHARES) {
             order.setQuantity(orderCreateDto.getTarget());
             order.setAmount(security.getPrice().multiply(BigDecimal.valueOf(orderCreateDto.getTarget())));
         } else { // TargetType.Dollars
@@ -60,7 +60,7 @@ public class OrderService {
             order.setAmount(dollars);
             order.setQuantity(dollars.divide(security.getPrice(), java.math.RoundingMode.HALF_UP).doubleValue());
         }
-        
+
         return orderRepository.save(order);
     }
     
