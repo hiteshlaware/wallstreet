@@ -41,8 +41,9 @@ public class OrderService {
     }
 
     public Order createOrder(Long accountId, OrderCreateDto orderCreateDto) {
+        System.out.println("accountId: " + accountId);
         System.out.println("OrderCreateDto: " + orderCreateDto.toString());
-        if (accountId != orderCreateDto.getAccountId()) {
+        if (!accountId.equals(orderCreateDto.getAccountId())) {
             throw new IllegalArgumentException("Account id does not match");
         }
 
