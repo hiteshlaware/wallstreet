@@ -9,6 +9,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+
+import jakarta.persistence.Column;
 import java.math.BigDecimal;
 
 @Entity
@@ -17,21 +19,28 @@ public class Order {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
     
+    @Column(name = "price", nullable = false, precision = 19, scale = 4)
     private BigDecimal price;
+    
+    @Column(name = "quantity", nullable = false)
     private Double quantity;
+    
+    @Column(name = "amount", nullable = false, precision = 19, scale = 4)
     private BigDecimal amount;
     
     @ManyToOne
-    @JoinColumn(name = "account_id")
+    @JoinColumn(name = "account_id", nullable = false)
     private Account account;
     
     @ManyToOne
-    @JoinColumn(name = "security_id")
+    @JoinColumn(name = "security_id", nullable = false)
     private Security security;
     
     @Enumerated(EnumType.STRING)
+    @Column(name = "order_type", nullable = false, length = 4)
     private OrderType orderType;
 
     // Default constructor required by JPA

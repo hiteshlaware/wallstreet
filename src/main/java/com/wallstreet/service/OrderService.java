@@ -61,8 +61,9 @@ public class OrderService {
 
         // Calculate quantity and amount based on TargetType
         if (orderCreateDto.getTargetType() == TargetType.SHARES) {
-            order.setQuantity(orderCreateDto.getTarget());
-            order.setAmount(security.getPrice().multiply(BigDecimal.valueOf(orderCreateDto.getTarget())));
+            Double quantity = orderCreateDto.getTarget();
+            order.setQuantity(quantity);
+            order.setAmount(security.getPrice().multiply(BigDecimal.valueOf(quantity)));
         } else { // TargetType.Dollars
             BigDecimal dollars = BigDecimal.valueOf(orderCreateDto.getTarget());
             order.setAmount(dollars);
