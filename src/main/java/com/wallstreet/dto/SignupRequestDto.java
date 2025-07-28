@@ -1,17 +1,19 @@
 package com.wallstreet.dto;
 
-public class SignupDto {
+public class SignupRequestDto {
     private String name;
+    private String username;
     private String email;
     private String password;
     private String repassword;
     private String phone;
     
     // Default constructor
-    public SignupDto() {}
+    public SignupRequestDto() {}
     
-    public SignupDto(String name, String email, String password, String repassword, String phone) {
+    public SignupRequestDto(String name, String username, String email, String password, String repassword, String phone) {
         this.name = name;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.repassword = repassword;
@@ -25,6 +27,14 @@ public class SignupDto {
     
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
     }
     
     public String getEmail() {

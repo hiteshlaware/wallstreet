@@ -1,64 +1,62 @@
 package com.wallstreet.service;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.wallstreet.dto.SigninDto;
-import com.wallstreet.dto.SignupDto;
+import com.wallstreet.dto.SignupRequestDto;
 import com.wallstreet.model.Account;
 import com.wallstreet.repository.AccountRepository;
 
-import java.util.Optional;
+
 
 @Service
 public class SigninService {
     
     private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
     
-    public SigninService(AccountRepository accountRepository) {
+    public SigninService(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
     }
     
-    /**
-     * Authenticate a user with email and password
-     * @param signinDto containing email and password
-     * @return Optional with Account if authentication successful, empty Optional otherwise
-     */
-    public Optional<Account> signin(SigninDto signinDto) {
-        // In a real application, you would use proper password encoding/hashing
-        // This is a simplified implementation for demonstration purposes
-        return accountRepository.findAll().stream()
-                .filter(account -> account.getEmail().equals(signinDto.getEmail()) 
-                        && account.getPassword().equals(signinDto.getPassword()))
-                .findFirst();
-    }
+    // signin method removed - consolidated with authentication in SigninController
     
     /**
      * Register a new user account
-     * @param signupDto containing user registration details
+     * @param signupRequestDto containing user registration details
      * @return created Account if successful, null if validation fails
      */
-    public Account signup(SignupDto signupDto) {
+    public Account signup(SignupRequestDto signupRequestDto) {
         // Validate that passwords match
-        if (!signupDto.getPassword().equals(signupDto.getRepassword())) {
+        if (!signupRequestDto.getPassword().equals(signupRequestDto.getRepassword())) {
             return null;
         }
         
         // Check if email already exists
         boolean emailExists = accountRepository.findAll().stream()
-                .anyMatch(account -> account.getEmail().equals(signupDto.getEmail()));
+                .anyMatch(account -> account.getEmail().equals(signupRequestDto.getEmail()));
         
         if (emailExists) {
             return null;
         }
         
+        // Check if username already exists
+        boolean usernameExists = accountRepository.findAll().stream()
+                .anyMatch(account -> account.getUsername().equals(signupRequestDto.getUsername()));
+        
+        if (usernameExists) {
+            return null;
+        }
+        
         // Create new account
         Account newAccount = new Account();
-        newAccount.setName(signupDto.getName());
-        newAccount.setEmail(signupDto.getEmail());
-        newAccount.setPassword(signupDto.getPassword());
-        newAccount.setPhone(signupDto.getPhone());
-        // Generate a username from email if needed
-        newAccount.setUsername(signupDto.getEmail().split("@")[0]);
+        newAccount.setName(signupRequestDto.getName());
+        newAccount.setEmail(signupRequestDto.getEmail());
+        newAccount.setPassword(passwordEncoder.encode(signupRequestDto.getPassword())); // Encode password
+        newAccount.setPhone(signupRequestDto.getPhone());
+        // Use provided username
+        newAccount.setUsername(signupRequestDto.getUsername());
         
         return accountRepository.save(newAccount);
     }

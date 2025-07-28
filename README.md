@@ -1,9 +1,6 @@
-# wallstreet
-This is a spring-boot application that manages trading simulator game
-=======
-# Wall Street Spring Boot Application
+# Wall Street Trading Simulator
 
-A simple Spring Boot application with a Hello World API.
+This is a Spring Boot application that manages trading simulator game.
 
 ## Requirements
 - Java 17 or higher
@@ -20,7 +17,11 @@ A simple Spring Boot application with a Hello World API.
    mvn spring-boot:run
    ```
 
-3. Access the Hello World API:
+3. Kill the Tomcat server (when needed):
+   ```bash
+   pkill -f tomcat
+   ```
+
+4. Access the Hello World API:
    - URL: http://localhost:8080/hello
    - Method: GET
->>>>>>> 9c50114 (Initial commit: Spring Boot application)
